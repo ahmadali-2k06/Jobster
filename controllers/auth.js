@@ -38,7 +38,10 @@ const loginUser = async (req, res) => {
     const refreshToken = user.createRefreshJWT();
     const accessToken = user.createAccessJWT();
     user.refreshTokens.push(refreshToken);
-    await user.save();
+    await User.updateOne(
+      { _id: user._id },
+      { $push: { refreshTokens: refreshToken } }
+    );
     res
       .status(StatusCodes.OK)
       .cookie("refreshToken", refreshToken, {
@@ -53,7 +56,7 @@ const loginUser = async (req, res) => {
   }
 };
 
-//refresh access token 
+//refresh access token
 const refreshAccessToken = async (req, res) => {
   const refreshToken = req.cookies.refreshToken;
   if (!refreshToken) {

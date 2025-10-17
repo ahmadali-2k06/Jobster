@@ -10,7 +10,7 @@ const authenticator = (req, res, next) => {
   }
   try {
     const token = authHeader.split(" ")[1];
-    const payLoad = jwt.verify(token, process.env.JWT_SECRET);
+    const payLoad = jwt.verify(token, process.env.JWT_SECRET_ACCESS);
     req.user = { userId: payLoad.userId, name: payLoad.name };
     next();
   } catch (err) {
