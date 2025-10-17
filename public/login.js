@@ -22,16 +22,33 @@ loginLink.addEventListener("click", () => {
 });
 
 registerForm.addEventListener("submit", async (e) => {
+  const text = registerForm.querySelector(".submit-text-register");
+  const loader = registerForm.querySelector(".loader-register");
   e.preventDefault();
+  text.style.display = "none";
+  loader.style.display = "block";
   const formData = new FormData(e.target);
   const body = Object.fromEntries(formData);
-  const response = await fetch("http://localhost:5000/auth/register", {
-    method: "POST",
-    body: JSON.stringify(body),
-    headers: {
-      "Content-type": "application/json",
-    },
-  });
+  try {
+    const response = await fetch("http://localhost:5000/auth/register", {
+      method: "POST",
+      body: JSON.stringify(body),
+      headers: {
+        "Content-type": "application/json",
+      },
+    });
+    const data = await response.json();
+    if (!response.ok) {
+      sendNotification("error", data.msg);
+    } else {
+      sendNotification("success", "Registered Successfully!");
+    }
+  } catch (err) {
+    sendNotification("error", err.message);
+  } finally {
+    text.style.display = "inline";
+    loader.style.display = "none";
+  }
   const credentials = await response.json();
   localStorage.setItem("token", credentials.accessToken);
   getAccesToken();
@@ -39,7 +56,7 @@ registerForm.addEventListener("submit", async (e) => {
 
 loginForm.addEventListener("submit", async (e) => {
   const text = loginForm.querySelector(".submit-text-login");
-  const loader = loginForm.querySelector(".loader");
+  const loader = loginForm.querySelector(".loader-login");
   e.preventDefault();
   text.style.display = "none";
   loader.style.display = "block";
@@ -57,7 +74,7 @@ loginForm.addEventListener("submit", async (e) => {
     if (!response.ok) {
       sendNotification("error", data.msg);
     } else {
-      sendNotification("success", "Login Success!");
+      sendNotification("success", "Login Succeed!");
     }
   } catch (err) {
     sendNotification("error", err.message);
