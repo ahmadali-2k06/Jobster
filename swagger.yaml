@@ -1,0 +1,304 @@
+openapi: 3.0.0
+info:
+  title: Jobs API Documentation
+  version: 1.0.0
+  description: API for managing job application status, built with Node.js, Express, and MongoDB.
+  contact:
+    name: Support Team
+servers:
+  - url: /
+    description: Local/Development Server
+security:
+  - BearerAuth: []
+tags:
+  - name: Auth
+    description: User registration and login
+  - name: Jobs
+    description: CRUD operations for job applications (requires authentication)
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Enter the Bearer token (JWT) obtained from the /auth/login endpoint.
+  schemas:
+    UserRegistration:
+      type: object
+      properties:
+        name:
+          type: string
+          example: John Doe
+        email:
+          type: string
+          format: email
+          example: john.doe@example.com
+        password:
+          type: string
+          format: password
+          minLength: 8
+          example: secretpassword123
+      required:
+        - name
+        - email
+        - password
+    UserLogin:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+          example: john.doe@example.com
+        password:
+          type: string
+          format: password
+          example: secretpassword123
+      required:
+        - email
+        - password
+    JobInput:
+      type: object
+      properties:
+        company:
+          type: string
+          maxLength: 50
+          example: Google
+        position:
+          type: string
+          example: Software Engineer
+        status:
+          type: string
+          enum:
+            - pending
+            - interview
+            - declined
+            - hired
+          default: pending
+      required:
+        - company
+        - position
+    JobOutput:
+      type: object
+      properties:
+        _id:
+          type: string
+          example: 60d5ec498f7c9e00155b1f13
+        company:
+          type: string
+          example: Google
+        position:
+          type: string
+          example: Software Engineer
+        status:
+          type: string
+          example: interview
+        createdBy:
+          type: string
+          example: 60d5ec498f7c9e00155b1f11
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    Error:
+      type: object
+      properties:
+        msg:
+          type: string
+          example: Invalid Credentials! Please try again.
+        statusCode:
+          type: integer
+          example: 401
+    JobCount:
+      type: object
+      properties:
+        jobs:
+          type: array
+          items:
+            $ref: '#/components/schemas/JobOutput'
+        jobsCount:
+          type: integer
+          example: 5
+
+paths:
+  /auth/register:
+    post:
+      tags:
+        - Auth
+      summary: Register a new user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserRegistration'
+      responses:
+        '201':
+          description: User registered successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  User:
+                    type: object
+                    properties:
+                      name: {type: string}
+                      UserID: {type: string}
+                  token: {type: string}
+        '400':
+          description: Bad request (e.g., missing fields, duplicate email)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /auth/login:
+    post:
+      tags:
+        - Auth
+      summary: Login a user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserLogin'
+      responses:
+        '200':
+          description: User logged in successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user:
+                    type: object
+                    properties:
+                      userID: {type: string}
+                      name: {type: string}
+                  token: {type: string}
+        '401':
+          description: Unauthorized (Invalid Credentials)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /jobs:
+    get:
+      tags:
+        - Jobs
+      summary: Get all jobs for the authenticated user
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: List of jobs retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobCount'
+        '401':
+          description: Unauthenticated
+    post:
+      tags:
+        - Jobs
+      summary: Create a new job application
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JobInput'
+      responses:
+        '201':
+          description: Job created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  job:
+                    $ref: '#/components/schemas/JobOutput'
+        '401':
+          description: Unauthenticated
+        '400':
+          description: Bad request (missing company/position)
+
+  /jobs/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The MongoDB ID of the job
+    get:
+      tags:
+        - Jobs
+      summary: Get a single job
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Job retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  job:
+                    $ref: '#/components/schemas/JobOutput'
+                  createdBy: {type: string}
+        '404':
+          description: Job not found
+    patch:
+      tags:
+        - Jobs
+      summary: Update a job application
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JobInput'
+      responses:
+        '200':
+          description: Job updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  job:
+                    $ref: '#/components/schemas/JobOutput'
+        '404':
+          description: Job not found
+        '400':
+          description: Bad request (missing company/position)
+    delete:
+      tags:
+        - Jobs
+      summary: Delete a job application
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Job deleted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+                    example: deleted
+        '404':
+          description: Job not found

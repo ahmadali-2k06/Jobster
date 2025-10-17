@@ -1,0 +1,71 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", sans-serif;
+}
+body {
+  background-color: #f0f4f8;
+}
+.nav-wrapper {
+  margin: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  margin-bottom: 4vw;
+  width: 71%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.jobster-home-content {
+  margin-left: 10vw;
+  margin-right: 10vw;
+  display: grid;
+  grid-template-rows: 1;
+  grid-template-columns: 1fr 1fr;
+}
+h1 {
+  font-weight: 700;
+  color: #102a43;
+  font-size: 48px;
+}
+h1 span {
+  color: #3b82f6;
+}
+
+.jobster-content-wrapper p {
+  color: #486581;
+  font: 16px;
+  line-height: 30px;
+}
+
+.log-reg-button {
+  color: white;
+  font-size: 20px;
+  padding: 8px 20px;
+  border-style: none;
+  border-radius: 5px;
+  background-color: #3b82f6;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.log-reg-button:hover {
+  background-color: #1d4ed8;
+}
+.jobster-content-wrapper {
+  align-self: center;
+  justify-self: center;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  width: 80%;
+}
+.jobster-image-wrapper img {
+  width: 565px;
+  height: 475px;
+}
+
+.log-reg-button a{
+    text-decoration: none;
+    color: white;
+}

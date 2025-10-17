@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="login.css" />
+    <title>Login</title>
+  </head>
+  <body>
+    <!-- LOGIN FORM -->
+    <div class="login-form-box form-box active">
+      <form action="/" method="post">
+        <div class="form-wrapper">
+          <div class="header-img">
+            <img src="/public/assets/logo.svg" alt="Logo" />
+          </div>
+          <h1>Login</h1>
+          <div class="form-fields">
+            <label for="emailFieldLogin">Email</label>
+            <input type="email" name="email" id="emailFieldLogin" required />
+
+            <label for="passwordFieldLogin">Password</label>
+            <input
+              type="password"
+              name="password"
+              id="passwordFieldLogin"
+              required
+              minlength="8"
+            />
+          </div>
+          <div class="buttons">
+            <button type="submit" class="button  submit-button-login">
+              <span class="submit-text-login">Submit</span>
+              <div class="loader"></div>
+            </button>
+            <button type="button" class="button demo-button">Demo App</button>
+          </div>
+          <p class="register-text">
+            Not a member yet? <span class="register-link">Register</span>
+          </p>
+        </div>
+      </form>
+    </div>
+
+    <!-- REGISTER FORM -->
+    <div class="register-form-box form-box">
+      <form action="/" method="post">
+        <div class="form-wrapper">
+          <div class="header-img">
+            <img src="/public/assets/logo.svg" alt="Logo" />
+          </div>
+          <h1>Register</h1>
+          <div class="form-fields">
+            <label for="nameFieldRegister">Name</label>
+            <input type="text" name="name" id="nameFieldRegister" required />
+
+            <label for="emailFieldRegister">Email</label>
+            <input type="email" name="email" id="emailFieldRegister" required />
+
+            <label for="passwordFieldRegister">Password</label>
+            <input
+              type="password"
+              name="password"
+              id="passwordFieldRegister"
+              minlength="8"
+              required
+            />
+          </div>
+          <div class="buttons">
+            <button type="submit" class="button">Register</button>
+            <button type="button" class="button demo-button">Demo App</button>
+          </div>
+          <p class="register-text">
+            Already a member? <span class="login-link">Login</span>
+          </p>
+        </div>
+      </form>
+    </div>
+    <!-- notification box -->
+    <div class="notification-box">
+      <div class="message-box-content">
+        <div class="notification-icon-box">
+          <svg
+            viewBox="0 0 512 512"
+            version="1.1"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            fill="#000000"
+          >
+            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+            <g
+              id="SVGRepo_tracerCarrier"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            ></g>
+            <g id="SVGRepo_iconCarrier">
+              <title>success-filled</title>
+              <g
+                id="Page-1"
+                stroke="none"
+                stroke-width="1"
+                fill="none"
+                fill-rule="evenodd"
+              >
+                <g
+                  id="add-copy-2"
+                  fill="#07bc0c"
+                  transform="translate(42.666667, 42.666667)"
+                >
+                  <path
+                    d="M213.333333,3.55271368e-14 C95.51296,3.55271368e-14 3.55271368e-14,95.51296 3.55271368e-14,213.333333 C3.55271368e-14,331.153707 95.51296,426.666667 213.333333,426.666667 C331.153707,426.666667 426.666667,331.153707 426.666667,213.333333 C426.666667,95.51296 331.153707,3.55271368e-14 213.333333,3.55271368e-14 Z M293.669333,137.114453 L323.835947,167.281067 L192,299.66912 L112.916693,220.585813 L143.083307,190.4192 L192,239.335893 L293.669333,137.114453 Z"
+                    id="Shape"
+                  ></path>
+                </g>
+              </g>
+            </g>
+          </svg>
+        </div>
+        <div class="message-box">Invalid Request</div>
+        <div class="close-button">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+            <g
+              id="SVGRepo_tracerCarrier"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            ></g>
+            <g id="SVGRepo_iconCarrier">
+              <rect width="24" height="24" fill="none"></rect>
+              <path
+                d="M7 17L16.8995 7.10051"
+                stroke="#878282"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ></path>
+              <path
+                d="M7 7.00001L16.8995 16.8995"
+                stroke="#878282"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ></path>
+            </g>
+          </svg>
+        </div>
+      </div>
+      <div class="loading-bar"></div>
+    </div>
+
+    <script src="login.js"></script>
+  </body>
+</html>
