@@ -1,10 +1,16 @@
 //imports
 const express = require("express");
 const app = express();
+const ejs = require("ejs");
 const connectDB = require("./db/connect");
 const errorHandler = require("./middlewares/errorHandler");
-const authRoute = require("./routes/auth");
-const jobsRoute = require("./routes/jobs");
+//api routes
+const authRoute = require("./routes/api/auth");
+const jobsRoute = require("./routes/api/jobs");
+//views routes
+const landingPageRoute = require("./routes/views/landingPage");
+const loginRoute = require("./routes/views/login");
+const dashboardRoute = require("./routes/views/dashboard");
 const authenticator = require("./middlewares/authentication");
 const {
   AuthenticationError,
@@ -40,11 +46,15 @@ app.use(xss());
 // app.use(xss());
 //middlewares
 app.use(express.json());
-
-//routes
+app.use(express.static("./public"));
+app.set("view engine", "ejs");
+//api routes
 app.use("/jobs", jobsRoute);
 app.use("/", authRoute);
-
+//static routes
+app.use("/", landingPageRoute);
+app.use("/login", loginRoute);
+app.use("/dashboard", dashboardRoute);
 //error Handler Middleware
 app.use(errorHandler);
 

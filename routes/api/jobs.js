@@ -1,12 +1,12 @@
 const express = require("express");
-const authenticator = require("../middlewares/authentication");
+const authenticator = require("../../middlewares/authentication");
 const {
   createJob,
   deleteJob,
   getAlljobs,
   getJob,
   updateJob,
-} = require("../controllers/jobs");
+} = require("../../controllers/jobs");
 const Router = express.Router();
 Router.use(authenticator);
 

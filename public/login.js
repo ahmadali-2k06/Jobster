@@ -1,5 +1,7 @@
-const loginForm = document.querySelector(".login-form-box");
-const registerForm = document.querySelector(".register-form-box");
+import getAccessToken from "./helpers/getAccessToken.js";
+//selectors
+const loginForm = document.querySelector(".login-form-box form");
+const registerForm = document.querySelector(".register-form-box form");
 const registerLink = document.querySelector(".register-link");
 const loginLink = document.querySelector(".login-link");
 const loadingBar = document.querySelector(".loading-bar");
@@ -20,7 +22,7 @@ loginLink.addEventListener("click", () => {
   registerForm.classList.remove("active");
   loginForm.classList.add("active");
 });
-
+//register form
 registerForm.addEventListener("submit", async (e) => {
   const text = registerForm.querySelector(".submit-text-register");
   const loader = registerForm.querySelector(".loader-register");
@@ -42,6 +44,10 @@ registerForm.addEventListener("submit", async (e) => {
       sendNotification("error", data.msg);
     } else {
       sendNotification("success", "Registered Successfully!");
+      localStorage.setItem("token", data.accessToken);
+      setTimeout(() => {
+        window.location.href = "/dashboard";
+      }, 5000);
     }
   } catch (err) {
     sendNotification("error", err.message);
@@ -49,11 +55,9 @@ registerForm.addEventListener("submit", async (e) => {
     text.style.display = "inline";
     loader.style.display = "none";
   }
-  const credentials = await response.json();
-  localStorage.setItem("token", credentials.accessToken);
-  getAccesToken();
 });
 
+//login form
 loginForm.addEventListener("submit", async (e) => {
   const text = loginForm.querySelector(".submit-text-login");
   const loader = loginForm.querySelector(".loader-login");
@@ -75,6 +79,10 @@ loginForm.addEventListener("submit", async (e) => {
       sendNotification("error", data.msg);
     } else {
       sendNotification("success", "Login Succeed!");
+      localStorage.setItem("token", data.accessToken);
+      setTimeout(() => {
+        window.location.href = "/dashboard";
+      }, 5000);
     }
   } catch (err) {
     sendNotification("error", err.message);
@@ -84,37 +92,12 @@ loginForm.addEventListener("submit", async (e) => {
   }
 });
 
-async function getAccesToken() {
-  let token = localStorage.getItem("token");
-  if (!token) {
-    return;
-  }
-  const payload = JSON.parse(atob(token.split(".")[1]));
-  console.log(payload.exp);
-
-  const isExpired = payload.exp * 1000 < Date.now();
-  if (isExpired) {
-    const res = await fetch("http://localhost:5000/auth/refreshToken", {
-      method: "POST",
-      credentials: "include",
-    });
-    if (res.ok) {
-      const data = await res.json();
-      localStorage.setItem("accessToken", data.accessToken);
-      return data.accessToken;
-    } else {
-      localStorage.removeItem("accessToken");
-      window.location.href = "/login";
-    }
-  }
-  return token;
-}
-
 notificationClosebtn.addEventListener("click", () => {
   notificationBox.style.transform = "translateY(-1000px)";
 });
 
-function stratLoading(bar) {
+//notification loading
+function startLoading(bar) {
   interval = setInterval(() => {
     if (width > 99) {
       clearInterval(interval);
@@ -123,9 +106,10 @@ function stratLoading(bar) {
       width += 1;
       bar.style.width = width + "%";
     }
-  }, 70);
+  }, 40);
 }
 
+//send Notification
 async function sendNotification(type = "success", message) {
   clearInterval(interval);
   width = 0;
@@ -142,7 +126,7 @@ async function sendNotification(type = "success", message) {
   messageContent.innerText = `${message}`;
   notificationBox.style.transform = "translateY(-44vh)";
   setTimeout(() => {
-    stratLoading(loadingBar);
+    startLoading(loadingBar);
   }, 300);
 }
 
