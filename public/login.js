@@ -81,6 +81,7 @@ loginForm.addEventListener("submit", async (e) => {
       sendNotification("error", data.msg);
     } else {
       sendNotification("success", "Login Succeed!");
+      localStorage.setItem("user", data.UserID);
       localStorage.setItem("accessToken", data.accessToken);
       setTimeout(() => {
         window.location.href = "/dashboard";
