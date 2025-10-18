@@ -1,5 +1,5 @@
 export default async function getAccessToken() {
-  let token = localStorage.getItem("token");
+  let token = localStorage.getItem("accessToken");
   if (!token) {
     return;
   }
