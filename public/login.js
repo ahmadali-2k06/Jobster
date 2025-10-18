@@ -47,6 +47,7 @@ registerForm.addEventListener("submit", async (e) => {
     } else {
       sendNotification("success", "Registered Successfully!");
       localStorage.setItem("accessToken", data.accessToken);
+      localStorage.setItem("user", data.user.userID);
       setTimeout(() => {
         window.location.href = "/dashboard";
       }, 5000);
@@ -81,7 +82,7 @@ loginForm.addEventListener("submit", async (e) => {
       sendNotification("error", data.msg);
     } else {
       sendNotification("success", "Login Succeed!");
-      localStorage.setItem("user", data.UserID);
+      localStorage.setItem("user", data.user.userID);
       localStorage.setItem("accessToken", data.accessToken);
       setTimeout(() => {
         window.location.href = "/dashboard";

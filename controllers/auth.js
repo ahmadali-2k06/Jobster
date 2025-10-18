@@ -19,7 +19,7 @@ const registerUser = async (req, res) => {
       maxAge: 7 * 24 * 60 * 60 * 1000,
     })
     .json({
-      User: { name: user.name, UserID: user._id },
+      user: { userID: user._id, name: user.name },
       accessToken,
     });
 };

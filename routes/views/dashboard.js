@@ -2,7 +2,6 @@ const express = require("express");
 const authenticationMiddleware = require("../../middlewares/authentication");
 const router = express.Router();
 
-router.use(authenticationMiddleware);
 router.get("/", (req, res) => {
   res.render("dashboard", { user: req.user });
 });

@@ -8,6 +8,7 @@ const errorHandler = require("./middlewares/errorHandler");
 const authRoute = require("./routes/api/auth");
 const jobsRoute = require("./routes/api/jobs");
 const refreshTokenRoute = require("./routes/api/refreshToken");
+const getUser = require("./routes/api/user");
 //views routes
 const landingPageRoute = require("./routes/views/landingPage");
 const loginRoute = require("./routes/views/login");
@@ -53,6 +54,7 @@ app.set("view engine", "ejs");
 app.use("/jobs", jobsRoute);
 app.use("/", authRoute);
 app.use("/auth", refreshTokenRoute);
+app.use("/", getUser);
 //static routes
 app.use("/", landingPageRoute);
 app.use("/login", loginRoute);
