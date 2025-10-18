@@ -9,6 +9,7 @@ const registerUser = async (req, res) => {
   const accessToken = user.createAccessJWT();
   user.refreshTokens.push(refreshToken);
   await user.save();
+  req.user = { name: user.name, UserID: user._id };
   res
     .status(StatusCodes.CREATED)
     .cookie("refreshToken", refreshToken, {
@@ -42,6 +43,7 @@ const loginUser = async (req, res) => {
       { _id: user._id },
       { $push: { refreshTokens: refreshToken } }
     );
+    req.user = { name: user.name, UserID: user._id };
     res
       .status(StatusCodes.OK)
       .cookie("refreshToken", refreshToken, {
