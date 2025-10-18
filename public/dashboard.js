@@ -1,3 +1,5 @@
-import getAccessToken from "./helpers/getAccessToken";
-const token = getAccessToken();
+import getAccessToken from "./helpers/getAccessToken.js";
+const token = await getAccessToken();
 console.log(token);
+
+
