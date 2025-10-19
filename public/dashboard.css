@@ -1,0 +1,152 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto Condensed", sans-serif;
+}
+html,
+body {
+  height: 100%;
+}
+body {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+nav {
+  padding: 25px;
+}
+nav {
+  display: flex;
+}
+.logo-box {
+  width: 20%;
+}
+.main-nav-box {
+  padding-right: 30px;
+  width: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 0.5s ease;
+}
+.ham-burger-svg-box svg {
+  fill: #3b82f6;
+  width: 28px;
+  height: 28px;
+}
+nav h3 {
+  font-weight: 300;
+  font-size: 32px;
+}
+
+.logout-button {
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 10px;
+  gap: 8px;
+  border-style: none;
+  border-radius: 5px;
+  background: #3b82f6;
+  font-size: 16px;
+  font-weight: 400;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+.logout-button:hover {
+  background-color: #1d4ed8;
+}
+
+.logout-button svg {
+  width: 16px;
+  height: 16px;
+  vertical-align: top;
+}
+.ham-burger-svg-box {
+  cursor: pointer;
+}
+
+.side-bar {
+  padding-top: 1rem;
+  width: 250px;
+  color: #627d98;
+  height: 100%;
+}
+.side-bar-item button {
+  color: #627d98;
+  width: 100%;
+  display: flex;
+  font-size: 18px;
+  background-color: white;
+  border-style: none;
+  padding: 16px 0 16px 40px;
+  gap: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.side-bar-item button:hover {
+  background-color: #f0f4f8;
+  padding-left: 50px;
+}
+
+.svg-icon-box svg {
+  width: 24px;
+  height: 24px;
+}
+
+.main-grid {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  flex-grow: 1;
+}
+
+.main-content {
+  border-left: 1px solid rgb(206, 200, 200);
+  border-top: 1px solid rgb(206, 200, 200);
+  background-color: #f0f4f8;
+}
+
+.main-grid {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  transition: all 0.5s ease;
+}
+
+.main-grid {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  transition: grid-template-columns 0.5s ease;
+}
+
+.main-grid {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  transition: grid-template-columns 0.3s ease;
+}
+
+.side-bar {
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+.logo-box {
+  transition: all 0.5s ease;
+}
+
+.main-grid.collapsed {
+  grid-template-columns: 0px 1fr;
+}
+
+.main-grid.collapsed .side-bar {
+  transform: translateX(-300%);
+}
+
+.logo-box.hidden {
+  transform: translateX(-300%);
+  width: 5%;
+  overflow: hidden;
+}
+
+.main-nav-box.non-collapsed {
+  width: 95%;
+}

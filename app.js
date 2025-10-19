@@ -50,15 +50,15 @@ app.use(xss());
 app.use(express.json());
 app.use(express.static("./public"));
 app.set("view engine", "ejs");
-//api routes
-app.use("/jobs", jobsRoute);
-app.use("/", authRoute);
-app.use("/auth", refreshTokenRoute);
-app.use("/", getUser);
 //static routes
 app.use("/", landingPageRoute);
 app.use("/login", loginRoute);
 app.use("/dashboard", dashboardRoute);
+//api routes
+app.use("/jobs", jobsRoute);
+app.use("/", authRoute);
+app.use("/auth", refreshTokenRoute);
+app.use("/user", getUser);
 //error Handler Middleware
 app.use(errorHandler);
 
