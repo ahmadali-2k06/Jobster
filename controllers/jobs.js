@@ -55,10 +55,36 @@ const updateJob = async (req, res) => {
   return res.status(StatusCodes.OK).json({ job: job });
 };
 
+const jobsCount = async (req, res) => {
+  const userId = req.params.id;
+  const jobs = await Job.find({ createdBy: userId });
+  const interviewScheduled = await Job.find({
+    status: "interview",
+    createdBy: userId,
+  });
+  const pending = await Job.find({ status: "pending", createdBy: userId });
+  const declined = await Job.find({ status: "declined", createdBy: userId });
+  const monthCounts = {};
+  jobs.forEach((job) => {
+    const date = new Date(job.createdAt);
+    const monthName = date.toLocaleString("default", { month: "long" });
+    monthCounts[monthName] = (monthCounts[monthName] || 0) + 1;
+  });
+  res.status(200).json({
+    monthCounts,
+    statusdistributed: {
+      interviewScheduled: interviewScheduled.length,
+      pending: pending.length,
+      declined: declined.length,
+    },
+  });
+};
+
 module.exports = {
   createJob,
   deleteJob,
   getAlljobs,
   getJob,
   updateJob,
+  jobsCount
 };
