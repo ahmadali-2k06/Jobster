@@ -9,7 +9,6 @@
       href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap"
       rel="stylesheet"
     />
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="dashboard.css" />
     <title>Dashboard</title>
   </head>
@@ -231,14 +230,18 @@
             </div>
           </div>
           <h3 class="heading-applicaitons">Monthly Applications</h3>
-          <h3 class="chart-name">Area Chart</h3>
+          <div class="chart-name-box">
+            <h3 class="chart-name">Area Chart</h3>
+          </div>
           <div class="charts-box">
-            <canvas id="monthChart" width="400" height="200"></canvas>
-            <canvas id="statusChart" width="400" height="200"></canvas>
+            <span class="loader-charts"></span>
+            <canvas id="jobsBarChart"></canvas>
+            <canvas id="jobsAreaChart"></canvas>
           </div>
         </div>
       </div>
     </div>
+    <script src="/chart.umd.min.js"></script>
     <script type="module" src="dashboard.js"></script>
   </body>
 </html>
