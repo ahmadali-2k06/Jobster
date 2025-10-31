@@ -1,0 +1,710 @@
+[
+  {
+    "company": "Google",
+    "position": "Frontend Developer",
+    "status": "interview",
+    "type": "full-time",
+    "createdAt": "2025-01-10T10:00:00Z",
+    "updatedAt": "2025-01-10T10:00:00Z"
+  },
+  {
+    "company": "Microsoft",
+    "position": "Backend Engineer",
+    "status": "pending",
+    "type": "remote",
+    "location": "Redmond, WA",
+    "createdAt": "2025-01-18T09:00:00Z",
+    "updatedAt": "2025-01-18T09:00:00Z"
+  },
+  {
+    "company": "Amazon",
+    "position": "Data Scientist",
+    "status": "declined",
+    "type": "full-time",
+    "location": "Seattle, WA",
+    "createdAt": "2025-02-05T08:00:00Z",
+    "updatedAt": "2025-02-05T08:00:00Z"
+  },
+  {
+    "company": "Netflix",
+    "position": "UI/UX Designer",
+    "status": "interview",
+    "type": "remote",
+    "createdAt": "2025-02-15T11:30:00Z",
+    "updatedAt": "2025-02-15T11:30:00Z"
+  },
+  {
+    "company": "Tesla",
+    "position": "Mechanical Engineer",
+    "status": "hired",
+    "type": "full-time",
+    "createdAt": "2025-03-01T09:45:00Z",
+    "updatedAt": "2025-03-01T09:45:00Z"
+  },
+  {
+    "company": "SpaceX",
+    "position": "Aerospace Engineer",
+    "status": "pending",
+    "type": "full-time",
+    "location": "Hawthorne, CA",
+    "createdAt": "2025-03-05T12:00:00Z",
+    "updatedAt": "2025-03-05T12:00:00Z"
+  },
+  {
+    "company": "Facebook",
+    "position": "Mobile App Developer",
+    "status": "interview",
+    "type": "part-time",
+    "createdAt": "2025-03-10T08:15:00Z",
+    "updatedAt": "2025-03-10T08:15:00Z"
+  },
+  {
+    "company": "Adobe",
+    "position": "Graphic Designer",
+    "status": "pending",
+    "type": "internship",
+    "location": "San Jose, CA",
+    "createdAt": "2025-03-15T10:45:00Z",
+    "updatedAt": "2025-03-15T10:45:00Z"
+  },
+  {
+    "company": "IBM",
+    "position": "Cloud Engineer",
+    "status": "hired",
+    "type": "remote",
+    "location": "New York, NY",
+    "createdAt": "2025-03-22T09:20:00Z",
+    "updatedAt": "2025-03-22T09:20:00Z"
+  },
+  {
+    "company": "Intel",
+    "position": "Embedded Systems Engineer",
+    "status": "declined",
+    "type": "full-time",
+    "location": "Santa Clara, CA",
+    "createdAt": "2025-03-30T11:00:00Z",
+    "updatedAt": "2025-03-30T11:00:00Z"
+  },
+  {
+    "company": "NVIDIA",
+    "position": "AI Researcher",
+    "status": "pending",
+    "type": "remote",
+    "location": "Santa Clara, CA",
+    "createdAt": "2025-04-04T14:00:00Z",
+    "updatedAt": "2025-04-04T14:00:00Z"
+  },
+  {
+    "company": "Oracle",
+    "position": "Database Administrator",
+    "status": "interview",
+    "type": "full-time",
+    "createdAt": "2025-04-09T09:00:00Z",
+    "updatedAt": "2025-04-09T09:00:00Z"
+  },
+  {
+    "company": "SAP",
+    "position": "Software Consultant",
+    "status": "pending",
+    "type": "part-time",
+    "location": "Berlin, Germany",
+    "createdAt": "2025-04-14T11:15:00Z",
+    "updatedAt": "2025-04-14T11:15:00Z"
+  },
+  {
+    "company": "Zoom",
+    "position": "DevOps Engineer",
+    "status": "declined",
+    "type": "remote",
+    "location": "San Jose, CA",
+    "createdAt": "2025-04-20T13:30:00Z",
+    "updatedAt": "2025-04-20T13:30:00Z"
+  },
+  {
+    "company": "Slack",
+    "position": "QA Tester",
+    "status": "hired",
+    "type": "internship",
+    "location": "San Francisco, CA",
+    "createdAt": "2025-04-25T10:45:00Z",
+    "updatedAt": "2025-04-25T10:45:00Z"
+  },
+  {
+    "company": "Dropbox",
+    "position": "Support Engineer",
+    "status": "pending",
+    "type": "part-time",
+    "createdAt": "2025-05-02T09:00:00Z",
+    "updatedAt": "2025-05-02T09:00:00Z"
+  },
+  {
+    "company": "Twitter",
+    "position": "Security Analyst",
+    "status": "interview",
+    "type": "remote",
+    "location": "San Francisco, CA",
+    "createdAt": "2025-05-10T08:15:00Z",
+    "updatedAt": "2025-05-10T08:15:00Z"
+  },
+  {
+    "company": "PayPal",
+    "position": "Financial Systems Engineer",
+    "status": "hired",
+    "type": "full-time",
+    "location": "San Jose, CA",
+    "createdAt": "2025-05-17T10:00:00Z",
+    "updatedAt": "2025-05-17T10:00:00Z"
+  },
+  {
+    "company": "Airbnb",
+    "position": "Frontend Developer",
+    "status": "pending",
+    "type": "part-time",
+    "location": "San Francisco, CA",
+    "createdAt": "2025-05-25T09:45:00Z",
+    "updatedAt": "2025-05-25T09:45:00Z"
+  },
+  {
+    "company": "Uber",
+    "position": "Full Stack Developer",
+    "status": "declined",
+    "type": "full-time",
+    "location": "San Francisco, CA",
+    "createdAt": "2025-06-03T08:00:00Z",
+    "updatedAt": "2025-06-03T08:00:00Z"
+  },
+  {
+    "company": "Lyft",
+    "position": "Android Developer",
+    "status": "interview",
+    "type": "internship",
+    "location": "San Francisco, CA",
+    "createdAt": "2025-06-08T11:00:00Z",
+    "updatedAt": "2025-06-08T11:00:00Z"
+  },
+  {
+    "company": "Spotify",
+    "position": "Audio Engineer",
+    "status": "pending",
+    "type": "remote",
+    "location": "Stockholm, Sweden",
+    "createdAt": "2025-06-15T09:15:00Z",
+    "updatedAt": "2025-06-15T09:15:00Z"
+  },
+  {
+    "company": "Twitch",
+    "position": "Live Streaming Engineer",
+    "status": "hired",
+    "type": "full-time",
+    "location": "San Francisco, CA",
+    "createdAt": "2025-06-20T10:00:00Z",
+    "updatedAt": "2025-06-20T10:00:00Z"
+  },
+  {
+    "company": "Epic Games",
+    "position": "Game Developer",
+    "status": "pending",
+    "type": "remote",
+    "location": "Cary, NC",
+    "createdAt": "2025-07-01T13:00:00Z",
+    "updatedAt": "2025-07-01T13:00:00Z"
+  },
+  {
+    "company": "EA Sports",
+    "position": "3D Artist",
+    "status": "declined",
+    "type": "internship",
+    "location": "Redwood City, CA",
+    "createdAt": "2025-07-08T09:45:00Z",
+    "updatedAt": "2025-07-08T09:45:00Z"
+  },
+  {
+    "company": "Ubisoft",
+    "position": "Level Designer",
+    "status": "interview",
+    "type": "part-time",
+    "location": "Montreal, Canada",
+    "createdAt": "2025-07-16T08:30:00Z",
+    "updatedAt": "2025-07-16T08:30:00Z"
+  },
+  {
+    "company": "Rockstar Games",
+    "position": "Environment Artist",
+    "status": "pending",
+    "type": "full-time",
+    "location": "New York, NY",
+    "createdAt": "2025-07-22T10:30:00Z",
+    "updatedAt": "2025-07-22T10:30:00Z"
+  },
+  {
+    "company": "Valve",
+    "position": "Systems Engineer",
+    "status": "declined",
+    "type": "remote",
+    "location": "Bellevue, WA",
+    "createdAt": "2025-08-01T11:00:00Z",
+    "updatedAt": "2025-08-01T11:00:00Z"
+  },
+  {
+    "company": "Riot Games",
+    "position": "Gameplay Programmer",
+    "status": "hired",
+    "type": "full-time",
+    "location": "Los Angeles, CA",
+    "createdAt": "2025-08-12T09:30:00Z",
+    "updatedAt": "2025-08-12T09:30:00Z"
+  },
+  {
+    "company": "Unity",
+    "position": "Tools Developer",
+    "status": "pending",
+    "type": "part-time",
+    "createdAt": "2025-08-20T10:00:00Z",
+    "updatedAt": "2025-08-20T10:00:00Z"
+  },
+  {
+    "company": "NextTech Solutions",
+    "position": "Backend Developer",
+    "status": "interview",
+    "type": "full-time",
+    "location": "New York, NY",
+    "createdAt": "2025-01-12T10:25:32.000Z",
+    "updatedAt": "2025-01-15T14:48:00.000Z"
+  },
+  {
+    "company": "PixelForge Studios",
+    "position": "UI/UX Designer",
+    "status": "declined",
+    "type": "remote",
+    "location": "Remote",
+    "createdAt": "2025-02-03T08:40:18.000Z",
+    "updatedAt": "2025-02-10T11:25:09.000Z"
+  },
+  {
+    "company": "BrightPath Software",
+    "position": "Frontend Developer",
+    "status": "pending",
+    "type": "full-time",
+    "location": "Boston, MA",
+    "createdAt": "2025-03-14T09:11:56.000Z",
+    "updatedAt": "2025-03-14T09:11:56.000Z"
+  },
+  {
+    "company": "Skyline Analytics",
+    "position": "Data Analyst",
+    "status": "interview",
+    "type": "part-time",
+    "location": "Chicago, IL",
+    "createdAt": "2025-04-01T12:22:41.000Z",
+    "updatedAt": "2025-04-02T08:45:23.000Z"
+  },
+  {
+    "company": "QuantumCore Systems",
+    "position": "Machine Learning Engineer",
+    "status": "pending",
+    "type": "remote",
+    "createdAt": "2025-05-05T10:00:00.000Z",
+    "updatedAt": "2025-05-06T15:40:00.000Z"
+  },
+  {
+    "company": "CloudNest Ltd.",
+    "position": "DevOps Engineer",
+    "status": "declined",
+    "type": "full-time",
+    "location": "Dublin, Ireland",
+    "createdAt": "2025-06-10T09:14:31.000Z",
+    "updatedAt": "2025-06-13T09:14:31.000Z"
+  },
+  {
+    "company": "Innovent Labs",
+    "position": "React Developer",
+    "status": "interview",
+    "type": "remote",
+    "location": "Remote (Global)",
+    "createdAt": "2025-07-04T07:59:00.000Z",
+    "updatedAt": "2025-07-06T11:33:12.000Z"
+  },
+  {
+    "company": "ByteBridge Technologies",
+    "position": "Software Tester",
+    "status": "pending",
+    "type": "part-time",
+    "location": "Toronto, Canada",
+    "createdAt": "2025-07-22T10:20:00.000Z",
+    "updatedAt": "2025-07-22T10:20:00.000Z"
+  },
+  {
+    "company": "FutureCom Networks",
+    "position": "Network Administrator",
+    "status": "declined",
+    "type": "full-time",
+    "location": "Atlanta, GA",
+    "createdAt": "2025-08-09T13:25:00.000Z",
+    "updatedAt": "2025-08-10T09:50:00.000Z"
+  },
+  {
+    "company": "AlgoVerse AI",
+    "position": "AI Research Intern",
+    "status": "interview",
+    "type": "internship",
+    "location": "Palo Alto, CA",
+    "createdAt": "2025-09-18T15:00:00.000Z",
+    "updatedAt": "2025-09-19T12:00:00.000Z"
+  },
+  {
+    "company": "CyberNova Tech",
+    "position": "Security Analyst",
+    "status": "pending",
+    "type": "remote",
+    "location": "Remote (US)",
+    "createdAt": "2025-10-02T08:00:00.000Z",
+    "updatedAt": "2025-10-02T09:30:00.000Z"
+  },
+  {
+    "company": "DevCraft Studios",
+    "position": "Full Stack Developer",
+    "status": "interview",
+    "type": "full-time",
+    "location": "Berlin, Germany",
+    "createdAt": "2025-10-05T11:15:00.000Z",
+    "updatedAt": "2025-10-06T11:20:00.000Z"
+  },
+  {
+    "company": "CodeStream Solutions",
+    "position": "API Developer",
+    "status": "pending",
+    "type": "part-time",
+    "location": "Austin, TX",
+    "createdAt": "2025-09-10T14:00:00.000Z",
+    "updatedAt": "2025-09-10T14:30:00.000Z"
+  },
+  {
+    "company": "BlueOcean Media",
+    "position": "Graphic Designer",
+    "status": "declined",
+    "type": "remote",
+    "location": "Remote",
+    "createdAt": "2025-08-27T10:00:00.000Z",
+    "updatedAt": "2025-08-27T10:00:00.000Z"
+  },
+  {
+    "company": "NextGen Finance",
+    "position": "Blockchain Developer",
+    "status": "interview",
+    "type": "full-time",
+    "location": "Singapore",
+    "createdAt": "2025-07-13T12:12:00.000Z",
+    "updatedAt": "2025-07-14T09:10:00.000Z"
+  },
+  {
+    "company": "DataVista Analytics",
+    "position": "BI Developer",
+    "status": "pending",
+    "type": "remote",
+    "location": "Remote",
+    "createdAt": "2025-06-04T11:00:00.000Z",
+    "updatedAt": "2025-06-05T08:15:00.000Z"
+  },
+  {
+    "company": "TechNova Corp",
+    "position": "Python Developer",
+    "status": "interview",
+    "type": "full-time",
+    "location": "London, UK",
+    "createdAt": "2025-05-11T09:45:00.000Z",
+    "updatedAt": "2025-05-12T09:45:00.000Z"
+  },
+  {
+    "company": "CleverWorks IT",
+    "position": "Database Administrator",
+    "status": "pending",
+    "type": "part-time",
+    "location": "Paris, France",
+    "createdAt": "2025-04-28T13:00:00.000Z",
+    "updatedAt": "2025-04-28T13:00:00.000Z"
+  },
+  {
+    "company": "SoftZen Studios",
+    "position": "Game Developer",
+    "status": "interview",
+    "type": "remote",
+    "location": "Remote",
+    "createdAt": "2025-03-19T15:10:00.000Z",
+    "updatedAt": "2025-03-20T10:30:00.000Z"
+  },
+  {
+    "company": "ProtonEdge Systems",
+    "position": "Embedded Engineer",
+    "status": "declined",
+    "type": "full-time",
+    "location": "Zurich, Switzerland",
+    "createdAt": "2025-02-22T09:00:00.000Z",
+    "updatedAt": "2025-02-23T12:00:00.000Z"
+  },
+  {
+    "company": "AppWise Technologies",
+    "position": "Flutter Developer",
+    "status": "pending",
+    "type": "remote",
+    "location": "Remote (EU)",
+    "createdAt": "2025-01-18T08:00:00.000Z",
+    "updatedAt": "2025-01-18T08:00:00.000Z"
+  },
+  {
+    "company": "EliteSoft Systems",
+    "position": "C# Developer",
+    "status": "interview",
+    "type": "full-time",
+    "location": "Seattle, WA",
+    "createdAt": "2025-05-24T10:30:00.000Z",
+    "updatedAt": "2025-05-25T09:15:00.000Z"
+  },
+  {
+    "company": "BrightCode Digital",
+    "position": "SEO Specialist",
+    "status": "declined",
+    "type": "part-time",
+    "location": "Miami, FL",
+    "createdAt": "2025-06-17T14:00:00.000Z",
+    "updatedAt": "2025-06-18T09:00:00.000Z"
+  },
+  {
+    "company": "MetaSoft Labs",
+    "position": "AI Product Manager",
+    "status": "interview",
+    "type": "full-time",
+    "createdAt": "2025-07-07T11:11:00.000Z",
+    "updatedAt": "2025-07-07T11:11:00.000Z"
+  },
+  {
+    "company": "CodeSphere Studios",
+    "position": "Angular Developer",
+    "status": "pending",
+    "type": "remote",
+    "location": "Remote",
+    "createdAt": "2025-08-16T09:09:00.000Z",
+    "updatedAt": "2025-08-17T10:15:00.000Z"
+  },
+  {
+    "company": "RedPanda Systems",
+    "position": "Support Engineer",
+    "status": "declined",
+    "type": "part-time",
+    "location": "Sydney, Australia",
+    "createdAt": "2025-09-05T12:30:00.000Z",
+    "updatedAt": "2025-09-06T14:00:00.000Z"
+  },
+  {
+    "company": "Softlogic Technologies",
+    "position": "Cloud Engineer",
+    "status": "interview",
+    "type": "full-time",
+    "location": "Bangalore, India",
+    "createdAt": "2025-10-01T11:00:00.000Z",
+    "updatedAt": "2025-10-01T11:00:00.000Z"
+  },
+  {
+    "company": "FinWise Global",
+    "position": "Finance Data Analyst",
+    "status": "pending",
+    "type": "remote",
+    "location": "Remote",
+    "createdAt": "2025-09-20T14:00:00.000Z",
+    "updatedAt": "2025-09-20T14:00:00.000Z"
+  },
+  {
+    "company": "VoltTech Innovations",
+    "position": "Mobile Developer",
+    "status": "declined",
+    "type": "internship",
+    "location": "Shanghai, China",
+    "createdAt": "2025-08-30T10:00:00.000Z",
+    "updatedAt": "2025-08-31T12:00:00.000Z"
+  },
+  {
+    "company": "DataBridge Analytics",
+    "position": "ETL Developer",
+    "status": "pending",
+    "type": "full-time",
+    "location": "Dallas, TX",
+    "createdAt": "2025-07-25T09:45:00.000Z",
+    "updatedAt": "2025-07-25T09:45:00.000Z"
+  },
+  {
+    "company": "InnoWeb Studios",
+    "position": "WordPress Developer",
+    "status": "interview",
+    "type": "remote",
+    "location": "Remote",
+    "createdAt": "2025-06-29T11:30:00.000Z",
+    "updatedAt": "2025-06-29T11:30:00.000Z"
+  },
+  {
+    "company": "TechCraft Dynamics",
+    "position": "System Administrator",
+    "status": "declined",
+    "type": "full-time",
+    "location": "Denver, CO",
+    "createdAt": "2025-05-18T09:00:00.000Z",
+    "updatedAt": "2025-05-18T09:00:00.000Z"
+  },
+  {
+    "company": "AppBridge Labs",
+    "position": "QA Engineer",
+    "status": "pending",
+    "type": "part-time",
+    "location": "Amsterdam, Netherlands",
+    "createdAt": "2025-04-12T13:10:00.000Z",
+    "updatedAt": "2025-04-12T13:10:00.000Z"
+  },
+  {
+    "company": "NextCloud Pvt Ltd",
+    "position": "Azure Administrator",
+    "status": "interview",
+    "type": "remote",
+    "location": "Remote",
+    "createdAt": "2025-03-07T08:00:00.000Z",
+    "updatedAt": "2025-03-07T08:00:00.000Z"
+  },
+  {
+    "company": "PixelSync Studios",
+    "position": "3D Artist",
+    "status": "declined",
+    "type": "internship",
+    "location": "Tokyo, Japan",
+    "createdAt": "2025-02-10T15:00:00.000Z",
+    "updatedAt": "2025-02-10T15:00:00.000Z"
+  },
+  {
+    "company": "BrightAI Solutions",
+    "position": "Chatbot Developer",
+    "status": "pending",
+    "type": "full-time",
+    "createdAt": "2025-01-09T10:00:00.000Z",
+    "updatedAt": "2025-01-09T10:00:00.000Z"
+  },
+  {
+    "company": "CyberCraft Security",
+    "position": "Penetration Tester",
+    "status": "interview",
+    "type": "remote",
+    "location": "Remote",
+    "createdAt": "2025-03-15T09:00:00.000Z",
+    "updatedAt": "2025-03-15T09:00:00.000Z"
+  },
+  {
+    "company": "SmartEdge Robotics",
+    "position": "Automation Engineer",
+    "status": "pending",
+    "type": "full-time",
+    "location": "Pittsburgh, PA",
+    "createdAt": "2025-04-22T12:00:00.000Z",
+    "updatedAt": "2025-04-22T12:00:00.000Z"
+  },
+  {
+    "company": "LiteCode Systems",
+    "position": "Technical Writer",
+    "status": "declined",
+    "type": "part-time",
+    "location": "Raleigh, NC",
+    "createdAt": "2025-05-03T09:00:00.000Z",
+    "updatedAt": "2025-05-03T09:00:00.000Z"
+  },
+  {
+    "company": "DevNest Hub",
+    "position": "Node.js Engineer",
+    "status": "interview",
+    "type": "remote",
+    "location": "Remote",
+    "createdAt": "2025-06-11T11:00:00.000Z",
+    "updatedAt": "2025-06-11T11:00:00.000Z"
+  },
+  {
+    "company": "OptiCore AI",
+    "position": "Data Scientist",
+    "status": "pending",
+    "type": "full-time",
+    "location": "Cambridge, MA",
+    "createdAt": "2025-07-14T08:00:00.000Z",
+    "updatedAt": "2025-07-14T08:00:00.000Z"
+  },
+  {
+    "company": "HyperDev Studios",
+    "position": "React Native Developer",
+    "status": "declined",
+    "type": "part-time",
+    "location": "Remote",
+    "createdAt": "2025-08-20T10:00:00.000Z",
+    "updatedAt": "2025-08-20T10:00:00.000Z"
+  },
+  {
+    "company": "SoftPulse Global",
+    "position": "Java Developer",
+    "status": "interview",
+    "type": "full-time",
+    "location": "New York, NY",
+    "createdAt": "2025-09-11T13:00:00.000Z",
+    "updatedAt": "2025-09-11T13:00:00.000Z"
+  },
+  {
+    "company": "PixelMatrix Media",
+    "position": "Video Editor",
+    "status": "pending",
+    "type": "remote",
+    "location": "Remote",
+    "createdAt": "2025-10-08T09:00:00.000Z",
+    "updatedAt": "2025-10-08T09:00:00.000Z"
+  },
+  {
+    "company": "TechFlow Systems",
+    "position": "Scrum Master",
+    "status": "declined",
+    "type": "full-time",
+    "location": "Washington, D.C.",
+    "createdAt": "2025-07-02T08:00:00.000Z",
+    "updatedAt": "2025-07-02T08:00:00.000Z"
+  },
+  {
+    "company": "AIverse Technologies",
+    "position": "Prompt Engineer",
+    "status": "interview",
+    "type": "remote",
+    "createdAt": "2025-06-16T11:00:00.000Z",
+    "updatedAt": "2025-06-16T11:00:00.000Z"
+  },
+  {
+    "company": "CyberWorks Pvt Ltd",
+    "position": "IT Support Intern",
+    "status": "pending",
+    "type": "internship",
+    "location": "London, UK",
+    "createdAt": "2025-04-09T10:00:00.000Z",
+    "updatedAt": "2025-04-09T10:00:00.000Z"
+  },
+  {
+    "company": "NovaLogic",
+    "position": "PHP Developer",
+    "status": "interview",
+    "type": "full-time",
+    "location": "Berlin, Germany",
+    "createdAt": "2025-03-29T09:00:00.000Z",
+    "updatedAt": "2025-03-29T09:00:00.000Z"
+  },
+  {
+    "company": "BrightByte Labs",
+    "position": "Junior Developer",
+    "status": "pending",
+    "type": "internship",
+    "location": "Vancouver, Canada",
+    "createdAt": "2025-02-16T08:00:00.000Z",
+    "updatedAt": "2025-02-16T08:00:00.000Z"
+  },
+  {
+    "company": "Quantum Media",
+    "position": "Marketing Specialist",
+    "status": "declined",
+    "type": "part-time",
+    "createdAt": "2025-01-25T09:00:00.000Z",
+    "updatedAt": "2025-01-25T09:00:00.000Z"
+  }
+]

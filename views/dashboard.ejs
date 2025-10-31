@@ -9,6 +9,10 @@
       href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap"
       rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
     <link rel="stylesheet" href="dashboard.css" />
     <title>Dashboard</title>
   </head>
@@ -76,9 +80,12 @@
       <aside>
         <div class="side-bar">
           <ul>
-            <li class="side-bar-item">
-              <button type="button">
-                <div class="svg-icon-box">
+            <li
+              class="side-bar-item active-button-side"
+              data-target="Statistics-BOX"
+            >
+              <button type="button" class="button-stats">
+                <div class="svg-icon-box svg-stats">
                   <svg
                     stroke="currentColor"
                     fill="currentColor"
@@ -94,12 +101,12 @@
                     ></path>
                   </svg>
                 </div>
-                <span class="text">Stats</span>
+                <span class="text text-stats">Stats</span>
               </button>
             </li>
-            <li class="side-bar-item">
-              <button type="button">
-                <div class="svg-icon-box">
+            <li class="side-bar-item" data-target="AllJobs-BOX">
+              <button type="button" class="button-jobs">
+                <div class="svg-icon-box svg-all-jobs">
                   <svg
                     stroke="currentColor"
                     fill="currentColor"
@@ -118,9 +125,9 @@
                 <span class="text">All Jobs</span>
               </button>
             </li>
-            <li class="side-bar-item">
-              <button type="button">
-                <div class="svg-icon-box">
+            <li class="side-bar-item" data-target="AddJob-BOX">
+              <button type="button" class="button-add-job">
+                <div class="svg-icon-box svg-add-job">
                   <svg
                     stroke="currentColor"
                     fill="currentColor"
@@ -138,9 +145,9 @@
                 <span class="text">Add Job</span>
               </button>
             </li>
-            <li class="side-bar-item">
-              <button type="button">
-                <div class="svg-icon-box">
+            <li class="side-bar-item" data-target="Profile-BOX">
+              <button type="button" class="button-profile">
+                <div class="svg-icon-box svg-profile">
                   <svg
                     stroke="currentColor"
                     fill="currentColor"
@@ -163,10 +170,10 @@
         </div>
       </aside>
       <div class="main-content">
-        <div class="stats-box">
+        <div class="stats-box main-box" data-name="Statistics-BOX">
           <div class="jobs-count-boxes-wrapper">
             <div class="pending-jobs-box jobs-box">
-              <div class="pending-jobs-count jobs-count-wrapper">
+              <div class="jobs-count-wrapper">
                 <span class="pending-jobs-count jobs-count">0</span>
                 <div class="pending-jobs-svg-box category-svg-box">
                   <svg
@@ -187,7 +194,7 @@
               <p class="category-heading">Pending Applications</p>
             </div>
             <div class="interview-jobs-box jobs-box">
-              <div class="interview-jobs-count jobs-count-wrapper">
+              <div class="jobs-count-wrapper">
                 <span class="interview-jobs-count jobs-count">0</span>
                 <div class="interview-jobs-svg-box category-svg-box">
                   <svg
@@ -208,7 +215,7 @@
               <p class="category-heading">Interviews Scheduled</p>
             </div>
             <div class="declined-jobs-box jobs-box">
-              <div class="declined-jobs-count jobs-count-wrapper">
+              <div class="jobs-count-wrapper">
                 <span class="declined-jobs-count jobs-count">0</span>
                 <div class="declined-jobs-svg-box category-svg-box">
                   <svg
@@ -239,7 +246,218 @@
             <canvas id="jobsAreaChart"></canvas>
           </div>
         </div>
+        <div class="all-jobs-box main-box non-active" data-name="AllJobs-BOX">
+          <section class="search-container">
+            <h2>Search Form</h2>
+            <form class="search-form" id="search-form">
+              <div class="form-fields">
+                <div class="form-control">
+                  <label for="search">Search</label>
+                  <input
+                    type="text"
+                    id="search"
+                    name="search"
+                    class="form-input"
+                  />
+                </div>
+
+                <div class="form-control">
+                  <label for="status">Status</label>
+                  <select id="status" name="status" class="form-select">
+                    <option value="all">all</option>
+                    <option value="pending">pending</option>
+                    <option value="interview">interview</option>
+                    <option value="declined">declined</option>
+                  </select>
+                </div>
+
+                <div class="form-control">
+                  <label for="type">Type</label>
+                  <select id="type" name="type" class="form-select">
+                    <option value="all">all</option>
+                    <option value="full-time">full-time</option>
+                    <option value="part-time">part-time</option>
+                    <option value="remote">remote</option>
+                    <option value="internship">internship</option>
+                  </select>
+                </div>
+
+                <div class="form-control">
+                  <label for="sort">Sort</label>
+                  <select id="sort" name="sort" class="form-select">
+                    <option value="latest">latest</option>
+                    <option value="oldest">oldest</option>
+                    <option value="a-z">a-z</option>
+                    <option value="z-a">z-a</option>
+                  </select>
+                </div>
+
+                <div class="spacer"></div>
+
+                <button type="button" class="clear-btn">Clear Filters</button>
+              </div>
+            </form>
+          </section>
+          <section class="jobs-display-section">
+            <div class="loader"></div>
+            <div class="count-cards-wrapper">
+              <h3 class="total-jobs-count">0 Jobs Found</h3>
+              <div class="no-jobs-container non-active">
+                <h5>No Jobs Found.</h5>
+                <button type="button" class="back-jobs-btn">
+                  Back to All Jobs
+                </button>
+              </div>
+              <div class="jobs-cards-box"></div>
+            </div>
+          </section>
+          <div class="pagination-box">
+            <button class="pagination-button" id="prev-btn" disabled>
+              &laquo; Prev
+            </button>
+            <ul class="page-list"></ul>
+            <button class="pagination-button" id="next-btn">
+              Next &raquo;
+            </button>
+          </div>
+        </div>
+        <div class="add-job-box main-box non-active" data-name="AddJob-BOX">
+          <main class="form-container">
+            <h3>Add Job</h3>
+
+            <form class="job-form">
+              <div class="form-grid">
+                <div class="form-group">
+                  <label for="position">Position</label>
+                  <input type="text" id="position" />
+                </div>
+
+                <div class="form-group">
+                  <label for="company">Company</label>
+                  <input type="text" id="company" />
+                </div>
+
+                <div class="form-group">
+                  <label for="location">Job Location</label>
+                  <input type="text" id="location" />
+                </div>
+
+                <div class="form-group">
+                  <label for="statusAddJob">Status</label>
+                  <select id="statusAddJob">
+                    <option value="pending" selected>pending</option>
+                    <option value="interview">interview</option>
+                    <option value="declined">declined</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="jobType">Job Type</label>
+                  <select id="jobType">
+                    <option value="full-time" selected>full-time</option>
+                    <option value="part-time">part-time</option>
+                    <option value="remote">remote</option>
+                    <option value="internship">internship</option>
+                  </select>
+                </div>
+
+                <div class="form-buttons">
+                  <button type="button" class="btn btn-clear">Clear</button>
+                  <button type="submit" class="btn btn-submit">Submit</button>
+                </div>
+              </div>
+            </form>
+          </main>
+        </div>
+        <div class="profile-box main-box non-active" data-name="Profile-BOX">
+          Profile
+        </div>
       </div>
+    </div>
+    <div class="confirmation-box" id="confirmBox">
+      <div class="confirmation-content">
+        <h3>Delete Job?</h3>
+        <p>
+          Are you sure you want to delete this job? This action cannot be
+          undone.
+        </p>
+        <div class="confirmation-actions">
+          <button class="cancel-btn" id="cancelDelete">Cancel</button>
+          <button class="confirm-btn" id="confirmDelete">Delete</button>
+        </div>
+      </div>
+    </div>
+    <div class="notification-box">
+      <div class="message-box-content">
+        <div class="notification-icon-box">
+          <svg
+            viewBox="0 0 512 512"
+            version="1.1"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            fill="#000000"
+          >
+            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+            <g
+              id="SVGRepo_tracerCarrier"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            ></g>
+            <g id="SVGRepo_iconCarrier">
+              <title>success-filled</title>
+              <g
+                id="Page-1"
+                stroke="none"
+                stroke-width="1"
+                fill="none"
+                fill-rule="evenodd"
+              >
+                <g
+                  id="add-copy-2"
+                  fill="#07bc0c"
+                  transform="translate(42.666667, 42.666667)"
+                >
+                  <path
+                    d="M213.333333,3.55271368e-14 C95.51296,3.55271368e-14 3.55271368e-14,95.51296 3.55271368e-14,213.333333 C3.55271368e-14,331.153707 95.51296,426.666667 213.333333,426.666667 C331.153707,426.666667 426.666667,331.153707 426.666667,213.333333 C426.666667,95.51296 331.153707,3.55271368e-14 213.333333,3.55271368e-14 Z M293.669333,137.114453 L323.835947,167.281067 L192,299.66912 L112.916693,220.585813 L143.083307,190.4192 L192,239.335893 L293.669333,137.114453 Z"
+                    id="Shape"
+                  ></path>
+                </g>
+              </g>
+            </g>
+          </svg>
+        </div>
+        <div class="message-box">Invalid Request</div>
+        <div class="close-button">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+            <g
+              id="SVGRepo_tracerCarrier"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            ></g>
+            <g id="SVGRepo_iconCarrier">
+              <rect width="24" height="24" fill="none"></rect>
+              <path
+                d="M7 17L16.8995 7.10051"
+                stroke="#878282"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ></path>
+              <path
+                d="M7 7.00001L16.8995 16.8995"
+                stroke="#878282"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ></path>
+            </g>
+          </svg>
+        </div>
+      </div>
+      <div class="loading-bar"></div>
     </div>
     <script src="/chart.umd.min.js"></script>
     <script type="module" src="dashboard.js"></script>
