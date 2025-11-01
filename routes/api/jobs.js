@@ -8,9 +8,10 @@ const {
   updateJob,
   jobsCount,
 } = require("../../controllers/jobs");
+const blockDemoWrites = require("../../middlewares/blockdemoWrites");
 const Router = express.Router();
 Router.use(authenticator);
-
+Router.use(blockDemoWrites);
 Router.route("/").get(getAlljobs).post(createJob);
 Router.route("/:id").get(getJob).patch(updateJob).delete(deleteJob);
 Router.route("/count/:id").post(jobsCount);

@@ -13,7 +13,6 @@ const userRoute = require("./routes/api/user");
 const landingPageRoute = require("./routes/views/landingPage");
 const loginRoute = require("./routes/views/login");
 const dashboardRoute = require("./routes/views/dashboard");
-const authenticator = require("./middlewares/authentication");
 const {
   AuthenticationError,
   BadRequestError,
@@ -45,7 +44,6 @@ app.use(
 app.use(helmet());
 app.use(cors());
 app.use(xss());
-// app.use(xss());
 //middlewares
 app.use(express.json());
 app.use(express.static("./public"));
@@ -61,7 +59,6 @@ app.use("/auth", refreshTokenRoute);
 app.use("/user", userRoute);
 //error Handler Middleware
 app.use(errorHandler);
-
 //app start
 const PORT = process.env.PORT || 5000;
 const start = async () => {

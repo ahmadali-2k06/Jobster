@@ -30,33 +30,45 @@ const loginUser = async (req, res) => {
   if (!email || !password) {
     throw new BadRequestError("Please provide all the credentials");
   }
+
   const user = await User.findOne({ email: email });
   if (!user) {
-    throw new AuthenticationError("Invalid Credentials! Please try again. ");
+    throw new AuthenticationError("Invalid Credentials! Please try again.");
   }
   const passwordCheckPassed = await user.checkPassword(password);
-  if (passwordCheckPassed) {
-    const refreshToken = user.createRefreshJWT();
-    const accessToken = user.createAccessJWT();
-    user.refreshTokens.push(refreshToken);
+  if (!passwordCheckPassed) {
+    throw new AuthenticationError("Invalid Credentials! Please try again.");
+  }
+  const isDemo = user.email === "demo@test.com";
+
+  const refreshToken = user.createRefreshJWT();
+  const accessToken = user.createAccessJWT({
+    readonly: isDemo,
+  });
+  if (!isDemo) {
     await User.updateOne(
       { _id: user._id },
       { $push: { refreshTokens: refreshToken } }
     );
-    req.user = { name: user.name, UserID: user._id };
-    res
-      .status(StatusCodes.OK)
-      .cookie("refreshToken", refreshToken, {
-        httpOnly: true,
-        secure: false,
-        sameSite: "strict",
-        maxAge: 7 * 24 * 60 * 60 * 1000,
-      })
-      .json({ user: { userID: user._id, name: user.name }, accessToken });
-  } else {
-    throw new AuthenticationError("Invalid Credentials! Please try again. ");
   }
+  res
+    .status(StatusCodes.OK)
+    .cookie("refreshToken", isDemo ? "" : refreshToken, {
+      httpOnly: true,
+      secure: false,
+      sameSite: "strict",
+      maxAge: 7 * 24 * 60 * 60 * 1000,
+    })
+    .json({
+      user: {
+        userID: user._id,
+        name: user.name,
+        readonly: isDemo,
+      },
+      accessToken,
+    });
 };
+
 
 //refresh access token
 const refreshAccessToken = async (req, res) => {
@@ -88,4 +100,33 @@ const refreshAccessToken = async (req, res) => {
     throw new AuthenticationError("Refresh token expired or invalid");
   }
 };
-module.exports = { registerUser, loginUser, refreshAccessToken };
+
+const logOut = async (req, res) => {
+  try {
+    const refreshToken = req.cookies.refreshToken;
+    if (!refreshToken) return res.sendStatus(StatusCodes.NO_CONTENT);
+
+    const user = await User.findOne({ refreshTokens: refreshToken });
+    if (!user) {
+      res.clearCookie("refreshToken", { httpOnly: true, sameSite: "strict" });
+      return res.sendStatus(204);
+    }
+
+    user.refreshTokens = user.refreshTokens.filter(
+      (token) => token !== refreshToken
+    );
+    await user.save();
+
+    res.clearCookie("refreshToken", { httpOnly: true, sameSite: "strict" });
+
+    return res
+      .status(StatusCodes.OK)
+      .json({ message: "Logged out successfully" });
+  } catch (err) {
+    console.error(err);
+    res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({ message: "Server error during logout" });
+  }
+};
+module.exports = { registerUser, loginUser, refreshAccessToken, logOut };

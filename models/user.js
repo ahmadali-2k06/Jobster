@@ -51,9 +51,9 @@ UserSchema.methods.createRefreshJWT = function () {
   );
 };
 
-UserSchema.methods.createAccessJWT = function () {
+UserSchema.methods.createAccessJWT = function (extra = {}) {
   return jwt.sign(
-    { userId: this._id, name: this.name },
+    { userId: this._id, name: this.name, ...extra },
     process.env.JWT_SECRET_ACCESS,
     {
       expiresIn: "1h",
