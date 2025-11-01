@@ -17,7 +17,7 @@ const getAlljobs = async (req, res) => {
   if (type) {
     filter.type = type;
   }
-  
+
   if (search) {
     const regex = new RegExp(search, "i");
     filter.$or = [{ position: regex }, { company: regex }];
@@ -98,7 +98,7 @@ const updateJob = async (req, res) => {
 };
 
 const jobsCount = async (req, res) => {
-  const userId = req.params.id;
+  const userId = req.user.userId;
   const jobs = await Job.find({ createdBy: userId });
   const interviewScheduled = await Job.find({
     status: "interview",

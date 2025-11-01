@@ -7,7 +7,7 @@ export default async function getAccessToken() {
   const payload = JSON.parse(atob(token.split(".")[1]));
   const isExpired = payload.exp * 1000 < Date.now();
   if (isExpired) {
-    const res = await fetch("http://localhost:5000/auth/refreshToken", {
+    const res = await fetch("/auth/refreshToken", {
       method: "POST",
       credentials: "include",
     });

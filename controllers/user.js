@@ -14,7 +14,7 @@ const getUser = async (req, res) => {
 const updateUser = async (req, res) => {
   const id = req.params.id;
   const { name, email, location } = req.body;
-  const user = await User.findByIdAndUpdate(id, {
+  const user = await User.findByIdAndUpdate(req.user.userId, {
     name: name,
     email: email,
     location: location,
@@ -24,5 +24,4 @@ const updateUser = async (req, res) => {
     .json({ name: user.name, email: user.email, location: user.location });
 };
 
-
-module.exports = { getUser, updateUser};
+module.exports = { getUser, updateUser };
