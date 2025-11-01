@@ -1,24 +1,4 @@
 import getAccessToken from "./helpers/getAccessToken.js";
-const token = await getAccessToken();
-const id = localStorage.getItem("user");
-let user;
-let currentPage = 1;
-let totalPages = 1;
-let jobIdToDelete = null;
-let interval;
-let width = 0;
-const maxVisible = 5;
-async function getUser(id) {
-  const data = await fetch(`http://localhost:5000/user/${id}`, {
-    method: "GET",
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
-  user = await data.json();
-}
-getUser(id);
-
 const hamBurger = document.querySelector(".ham-burger-svg-box ");
 const logoBox = document.querySelector(".logo-box");
 const grid = document.querySelector(".main-grid");
@@ -60,11 +40,38 @@ const statusSelectAddJob = document.querySelector("#statusAddJob");
 const typeSelectAddJob = document.querySelector("#jobType");
 const clearbtnAddJob = document.querySelector(".btn-clear");
 const submitbtn = document.querySelector(".btn-submit ");
+const allJobsSectionButton = document.querySelector(
+  `[data-target="AddJob-BOX"]`
+);
+const nameField = document.querySelector("#name");
+const emailField = document.querySelector("#email");
+const locationFieldUser = document.querySelector("#locationUser");
+const saveProfileButton = document.querySelector(".save-profile-btn");
+const userNameNav = document.querySelector(".user-name");
 let addjobFields = document.querySelectorAll(".form-group input");
-
 let errorSvg = `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10zm-1.5-5.009c0-.867.659-1.491 1.491-1.491.85 0 1.509.624 1.509 1.491 0 .867-.659 1.509-1.509 1.509-.832 0-1.491-.642-1.491-1.509zM11.172 6a.5.5 0 0 0-.499.522l.306 7a.5.5 0 0 0 .5.478h1.043a.5.5 0 0 0 .5-.478l.305-7a.5.5 0 0 0-.5-.522h-1.655z" fill="#e74c3c"></path></g></svg>`;
 let successSvg = `  <svg  viewBox="0 0 512 512"  version="1.1"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000" > <g id="SVGRepo_bgCarrier" stroke-width="0"></g> <g  id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" ></g> <g id="SVGRepo_iconCarrier">  <title>success-filled</title> <g  id="Page-1" stroke="none" stroke-width="1"  fill="none"  fill-rule="evenodd" >  <g id="add-copy-2" fill="#07bc0c" transform="translate(42.666667, 42.666667)"  >  <path d="M213.333333,3.55271368e-14 C95.51296,3.55271368e-14 3.55271368e-14,95.51296 3.55271368e-14,213.333333 C3.55271368e-14,331.153707 95.51296,426.666667 213.333333,426.666667 C331.153707,426.666667 426.666667,331.153707 426.666667,213.333333 C426.666667,95.51296 331.153707,3.55271368e-14 213.333333,3.55271368e-14 Z M293.669333,137.114453 L323.835947,167.281067 L192,299.66912 L112.916693,220.585813 L143.083307,190.4192 L192,239.335893 L293.669333,137.114453 Z" id="Shape" ></path></g></g>  </g>  </svg>`;
-
+const token = await getAccessToken();
+const id = localStorage.getItem("user");
+let user;
+let currentPage = 1;
+let totalPages = 1;
+let jobIdToDelete = null;
+let jobIdtoUpdate = null;
+let interval;
+let width = 0;
+const maxVisible = 5;
+async function getUser(id) {
+  const data = await fetch(`http://localhost:5000/user/${id}`, {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  user = await data.json();
+}
+await getUser(id);
+populateUserFields();
 hamBurger.addEventListener("click", () => {
   grid.classList.toggle("collapsed");
   logoBox.classList.toggle("hidden");
@@ -72,7 +79,7 @@ hamBurger.addEventListener("click", () => {
 });
 
 profileButton.addEventListener("click", () => {
-  logOutButton.classList.toggle("show");
+  logOutButton.classList.toggle("active");
 });
 
 prevButton.addEventListener("click", () => goToPage(currentPage - 1));
@@ -314,7 +321,7 @@ function createJobCard(status, title, company, location, type, date, id) {
       <div class="card-body">
         <div class="info-item">
           <i class="fas fa-map-marker-alt"></i>
-          <span>${location}</span>
+          <span class="location">${location}</span>
         </div>
         <div class="info-item">
           <i class="fas fa-calendar-alt"></i>
@@ -326,7 +333,7 @@ function createJobCard(status, title, company, location, type, date, id) {
         </div>
         <div class="info-item">
           <i class="fas fa-briefcase"></i>
-          <span>${type}</span>
+          <span class="type">${type}</span>
         </div>
         <div class="info-item">
           <span class="status status-${status}">${status}</span>
@@ -499,30 +506,170 @@ submitbtn.addEventListener("click", async (e) => {
   let status = statusSelectAddJob.value;
   let type = typeSelectAddJob.value;
   let location = locationField.value;
-  try {
-    const res = await fetch(`/jobs`, {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify({
-        position: position,
-        company: company,
-        status: status,
-        type: type,
-        location: location,
-      }),
-    });
-    if (res.ok) {
-      sendNotification("success", "Job Added Successfully!");
+  if (
+    position === "" ||
+    company === "" ||
+    status === "" ||
+    type === "" ||
+    location === ""
+  ) {
+    sendNotification("error", "Please fill out all the fields!");
+  } else {
+    if (jobIdtoUpdate === null) {
+      try {
+        submitbtn.classList.add("active");
+        const res = await fetch(`/jobs`, {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            position: position,
+            company: company,
+            status: status,
+            type: type,
+            location: location,
+          }),
+        });
+        const data = await res.json();
+        if (res.ok) {
+          sendNotification("success", "Job Added Successfully!");
+          loadJobs(1);
+        } else {
+          sendNotification(
+            "error",
+            data.msg || "An error occured while adding job!"
+          );
+        }
+      } catch (err) {
+        sendNotification("error", err);
+      } finally {
+        clearaddJobForm();
+        submitbtn.classList.remove("active");
+      }
+    } else {
+      try {
+        submitbtn.classList.add("active");
+        const res = await fetch(`/jobs/${jobIdtoUpdate}`, {
+          method: "PATCH",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            position: position,
+            company: company,
+            status: status,
+            type: type,
+            location: location,
+          }),
+        });
+        const data = await res.json();
+        if (res.ok) {
+          sendNotification("success", "Job Updated Successfully!");
+          loadJobs(1);
+        } else {
+          sendNotification(
+            "error",
+            data.msg || "An error occured while Updating job!"
+          );
+        }
+      } catch (err) {
+        sendNotification("error", err);
+      } finally {
+        clearaddJobForm();
+        submitbtn.classList.remove("active");
+        jobIdtoUpdate = null;
+        submitbtn.querySelector(".submit-text").innerText = "Submit";
+      }
     }
-  } catch (err) {
-    sendNotification("error", err);
   }
 });
 
 clearbtnAddJob.addEventListener("click", () => {
+  clearaddJobForm();
+});
+
+//clear Add Job Form
+function clearaddJobForm() {
   addjobFields.forEach((field) => {
     field.value = "";
+    jobIdtoUpdate = null;
+    submitbtn.querySelector(".submit-text").innerText = "Submit";
   });
+}
+
+jobsBox.addEventListener("click", (e) => {
+  if (e.target.classList.contains("btn-edit")) {
+    const card = e.target.closest(".job-card");
+    jobIdtoUpdate = card.getAttribute("data-id");
+    let position = card.querySelector(".job-title").innerText;
+    let company = card.querySelector(".company-name").innerText;
+    let location = card.querySelector(".location").innerText;
+    let type = card.querySelector(".type").innerText;
+    let status = card.querySelector(".status").innerText.toLowerCase();
+    positionField.value = position;
+    companyField.value = company;
+    locationField.value = location;
+    typeSelectAddJob.value = type;
+    statusSelectAddJob.value = status;
+    submitbtn.querySelector(".submit-text").innerText = "Update";
+    allJobsSectionButton.click();
+  }
 });
+
+function populateUserFields() {
+  nameField.value = user.name;
+  locationFieldUser.value = user.location;
+  emailField.value = user.email;
+  userNameNav.innerHTML = user.name;
+}
+
+saveProfileButton.addEventListener("click", async () => {
+  saveProfileButton.classList.add("active");
+  const name = nameField.value;
+  const location = locationFieldUser.value;
+  const email = emailField.value;
+  try {
+    const res = await fetch(`/user/${id}`, {
+      method: "PATCH",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: name,
+        email: email,
+        location: location,
+      }),
+    });
+    if (res.ok) {
+      sendNotification("success", "Changes saved successfully!");
+    } else {
+      sendNotification("error", "Failed to save changes!");
+    }
+  } catch (err) {
+    sendNotification(
+      "error",
+      err || "An error occured while saving the user! Try again later."
+    );
+  } finally {
+    saveProfileButton.classList.remove("active");
+  }
+});
+
+logOutButton.addEventListener("click", () => {
+  logout();
+});
+
+async function logout() {
+  await fetch("/auth/logout", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  localStorage.removeItem("accessToken");
+  window.location.href = "/login";
+}

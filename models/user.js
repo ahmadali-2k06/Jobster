@@ -19,8 +19,12 @@ const UserSchema = new mongoose.Schema({
   },
   password: {
     type: String,
-    required: [true, "Please provide name"],
+    required: [true, "Please provide password"],
     minLength: 8,
+  },
+  location: {
+    type: String,
+    default: "My city",
   },
   refreshTokens: {
     type: [String],

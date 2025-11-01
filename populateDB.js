@@ -3,7 +3,7 @@ const connectDB = require("./db/connect");
 const Job = require("./models/job");
 const jobsJson = require("./jobs.json");
 require("dotenv").config();
-const userId = "68f29eb83abdf128bae458f1";
+const userId = "690616d36d94a466a8a881a2";
 const start = async () => {
   try {
     await connectDB(process.env.MONGO_URI);

@@ -72,7 +72,7 @@
               </svg>
             </div>
           </button>
-          <button type="button" class="button-log-out">Log Out</button>
+          <button type="button" class="button-log-out popup">Log Out</button>
         </div>
       </div>
     </nav>
@@ -324,7 +324,6 @@
         <div class="add-job-box main-box non-active" data-name="AddJob-BOX">
           <main class="form-container">
             <h3>Add Job</h3>
-
             <form class="job-form">
               <div class="form-grid">
                 <div class="form-group">
@@ -363,14 +362,42 @@
 
                 <div class="form-buttons">
                   <button type="button" class="btn btn-clear">Clear</button>
-                  <button type="submit" class="btn btn-submit">Submit</button>
+                  <button type="submit" class="btn btn-submit">
+                    <span class="submit-text"> Submit </span>
+                    <div class="loader-submit-btn"></div>
+                  </button>
                 </div>
               </div>
             </form>
           </main>
         </div>
         <div class="profile-box main-box non-active" data-name="Profile-BOX">
-          Profile
+          <main class="profile-card">
+            <h3>Profile</h3>
+            <div class="profile-layout">
+              <div class="input-field">
+                <label for="name">Name</label>
+                <input type="text" id="name" value="test user" />
+              </div>
+
+              <div class="input-field">
+                <label for="email">Email</label>
+                <input type="text" id="email" value="testUser@test.com" />
+              </div>
+
+              <div class="input-field">
+                <label for="location">Location</label>
+                <input type="text" id="locationUser" value="" />
+              </div>
+
+              <div class="button-field">
+                <button type="button" class="save-profile-btn">
+                  <div class="loader-save-changesBtn"></div>
+                 <span class="save-changes-text">Save Changes</span>
+                </button>
+              </div>  
+            </div>
+          </main>
         </div>
       </div>
     </div>
