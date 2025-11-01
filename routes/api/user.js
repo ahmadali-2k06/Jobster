@@ -1,8 +1,10 @@
 const express = require("express");
-const { getUser, updateUser} = require("../../controllers/user");
+const { getUser, updateUser } = require("../../controllers/user");
 const authenticator = require("../../middlewares/authentication");
+const blockDemoWrites = require("../../middlewares/blockdemoWrites");
 const router = express.Router();
 router.use(authenticator);
+router.use(blockDemoWrites);
 router.get("/:id", getUser);
 router.patch("/:id", updateUser);
 module.exports = router;

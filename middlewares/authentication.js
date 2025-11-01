@@ -11,7 +11,11 @@ const authenticator = (req, res, next) => {
   try {
     const token = authHeader.split(" ")[1];
     const payLoad = jwt.verify(token, process.env.JWT_SECRET_ACCESS);
-    req.user = { userId: payLoad.userId, name: payLoad.name };
+    req.user = {
+      userId: payLoad.userId,
+      name: payLoad.name,
+      readonly: payLoad.readonly,
+    };
     next();
   } catch (err) {
     throw new AuthenticationError("UnAuthenticated");
