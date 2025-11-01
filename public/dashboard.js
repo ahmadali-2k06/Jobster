@@ -93,7 +93,7 @@ async function loadChart() {
   try {
     const userId = `${id}`;
     const res = await fetch(`/jobs/count/${userId}`, {
-      method: "POST",
+      method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -439,12 +439,12 @@ confirmDelete.addEventListener("click", async () => {
         Authorization: `Bearer ${token}`,
       },
     });
-
+    const data = await res.json();
     if (res.ok) {
       sendNotification("success", "Job deleted successfully!");
       loadJobs();
     } else {
-      sendNotification("error", "Failed to delete Job.Try again!");
+      sendNotification("error", data.msg || "Failed to delete Job.Try again!");
     }
   } catch (err) {
     sendNotification("error", err);
@@ -644,10 +644,11 @@ saveProfileButton.addEventListener("click", async () => {
         location: location,
       }),
     });
+    const data = await res.json();
     if (res.ok) {
       sendNotification("success", "Changes saved successfully!");
     } else {
-      sendNotification("error", "Failed to save changes!");
+      sendNotification("error", data.msg || "Failed to save changes!");
     }
   } catch (err) {
     sendNotification(
@@ -673,3 +674,4 @@ async function logout() {
   localStorage.removeItem("accessToken");
   window.location.href = "/login";
 }
+

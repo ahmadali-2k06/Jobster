@@ -9,6 +9,7 @@ const loginLink = document.querySelector(".login-link");
 const loadingBar = document.querySelector(".loading-bar");
 const notificationBox = document.querySelector(".notification-box");
 const notificationClosebtn = document.querySelector(".close-button");
+const demoButtons = document.querySelectorAll(".demo-button");
 
 let interval;
 let width = 0;
@@ -140,4 +141,36 @@ notificationBox.addEventListener("mouseenter", () => {
 
 notificationBox.addEventListener("mouseleave", () => {
   startLoading(loadingBar);
+});
+
+demoButtons.forEach((button) => {
+  button.addEventListener("click", async () => {
+    button.classList.add("active");
+    try {
+      const response = await fetch("http://localhost:5000/auth/demo-login", {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+      });
+      const data = await response.json();
+      if (!response.ok) {
+        sendNotification(
+          "error",
+          data.msg || "Demo login failed. Please try again."
+        );
+      } else {
+        sendNotification("success", "Demo Login Succeed!");
+        localStorage.setItem("user", data.user.userID);
+        localStorage.setItem("accessToken", data.accessToken);
+        setTimeout(() => {
+          window.location.href = "/dashboard";
+        }, 5000);
+      }
+    } catch (err) {
+      sendNotification("error", err.message);
+    } finally {
+      button.classList.remove("active");
+    }
+  });
 });

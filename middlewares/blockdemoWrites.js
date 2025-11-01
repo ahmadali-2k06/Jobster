@@ -6,7 +6,7 @@ const blockDemoWrites = (req, res, next) => {
   ) {
     return res
       .status(StatusCodes.FORBIDDEN)
-      .json({ msg: "Demo mode: changes are disabled" });
+      .json({ msg: "Demo mode: Read only" });
   }
   next();
 };

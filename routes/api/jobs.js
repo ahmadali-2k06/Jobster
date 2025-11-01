@@ -14,6 +14,6 @@ Router.use(authenticator);
 Router.use(blockDemoWrites);
 Router.route("/").get(getAlljobs).post(createJob);
 Router.route("/:id").get(getJob).patch(updateJob).delete(deleteJob);
-Router.route("/count/:id").post(jobsCount);
+Router.route("/count/:id").get(jobsCount);
 
 module.exports = Router;

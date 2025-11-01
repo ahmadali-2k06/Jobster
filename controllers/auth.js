@@ -53,7 +53,7 @@ const loginUser = async (req, res) => {
   }
   res
     .status(StatusCodes.OK)
-    .cookie("refreshToken", isDemo ? "" : refreshToken, {
+    .cookie("refreshToken", refreshToken, {
       httpOnly: true,
       secure: false,
       sameSite: "strict",
@@ -69,36 +69,60 @@ const loginUser = async (req, res) => {
     });
 };
 
-
 //refresh access token
+
 const refreshAccessToken = async (req, res) => {
   const refreshToken = req.cookies.refreshToken;
   if (!refreshToken) {
     throw new BadRequestError("No refresh token provided");
   }
-
-  const user = await User.findOne({ refreshTokens: refreshToken });
-  if (!user) {
-    throw new AuthenticationError("Invalid token provided");
-  }
   try {
     const decoded = jwt.verify(refreshToken, process.env.JWT_SECRET_REFRESH);
-
     const user = await User.findById(decoded.userId);
-    if (!user || !user.refreshTokens.includes(refreshToken)) {
+    if (!user) {
       throw new AuthenticationError("Invalid token provided");
     }
-
-    const accessToken = user.createAccessJWT();
+    const isDemo = user.email === "demo@test.com";
+    if (!isDemo && !user.refreshTokens.includes(refreshToken)) {
+      throw new AuthenticationError("Invalid token provided");
+    }
+    const accessToken = user.createAccessJWT({ readonly: isDemo });
     return res.status(StatusCodes.OK).json({ accessToken });
   } catch (err) {
     const user = await User.findOne({ refreshTokens: refreshToken });
-    if (user) {
+    if (user && user.email !== "demo@test.com") {
       user.refreshTokens = user.refreshTokens.filter((t) => t !== refreshToken);
       await user.save();
     }
     throw new AuthenticationError("Refresh token expired or invalid");
   }
+};
+
+const demoLogin = async (req, res) => {
+  const demoUser = await User.findOne({ email: "demo@test.com" });
+  if (!demoUser) {
+    throw new AuthenticationError("Demo user account not found.");
+  }
+
+  const refreshToken = demoUser.createRefreshJWT();
+  const accessToken = demoUser.createAccessJWT({ readonly: true });
+
+  res
+    .status(StatusCodes.OK)
+    .cookie("refreshToken", refreshToken, {
+      httpOnly: true,
+      secure: false, 
+      sameSite: "strict",
+      maxAge: 7 * 24 * 60 * 60 * 1000,
+    })
+    .json({
+      user: {
+        userID: demoUser._id,
+        name: demoUser.name,
+        readonly: true,
+      },
+      accessToken,
+    });
 };
 
 const logOut = async (req, res) => {
@@ -129,4 +153,10 @@ const logOut = async (req, res) => {
       .json({ message: "Server error during logout" });
   }
 };
-module.exports = { registerUser, loginUser, refreshAccessToken, logOut };
+module.exports = {
+  registerUser,
+  loginUser,
+  refreshAccessToken,
+  logOut,
+  demoLogin,
+};
