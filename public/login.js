@@ -35,7 +35,7 @@ registerForm.addEventListener("submit", async (e) => {
   const formData = new FormData(e.target);
   const body = Object.fromEntries(formData);
   try {
-    const response = await fetch("http://localhost:5000/auth/register", {
+    const response = await fetch("/auth/register", {
       method: "POST",
       body: JSON.stringify(body),
       headers: {
@@ -71,7 +71,7 @@ loginForm.addEventListener("submit", async (e) => {
   const formData = new FormData(e.target);
   const body = Object.fromEntries(formData);
   try {
-    const response = await fetch("http://localhost:5000/auth/login", {
+    const response = await fetch("/auth/login", {
       method: "POST",
       body: JSON.stringify(body),
       headers: {
@@ -147,7 +147,7 @@ demoButtons.forEach((button) => {
   button.addEventListener("click", async () => {
     button.classList.add("active");
     try {
-      const response = await fetch("http://localhost:5000/auth/demo-login", {
+      const response = await fetch("/auth/demo-login", {
         method: "POST",
         headers: {
           "Content-type": "application/json",

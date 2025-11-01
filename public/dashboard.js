@@ -62,7 +62,7 @@ let interval;
 let width = 0;
 const maxVisible = 5;
 async function getUser(id) {
-  const data = await fetch(`http://localhost:5000/user/${id}`, {
+  const data = await fetch(`/user/${id}`, {
     method: "GET",
     headers: {
       Authorization: `Bearer ${token}`,

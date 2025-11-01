@@ -24,14 +24,6 @@ const { xss } = require("express-xss-sanitizer");
 const cors = require("cors");
 const ratelimiter = require("express-rate-limit");
 const cookieParser = require("cookie-parser");
-
-//documentation libraries imports
-const swaggerUi = require("swagger-ui-express");
-const YAML = require("yamljs");
-
-//doucumentation setup
-const swaggerDocument = YAML.load("./swagger.yaml");
-app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 //security middlewares
 app.use(cookieParser());
 app.set("trust proxy", 1);
