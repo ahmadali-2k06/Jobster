@@ -132,7 +132,11 @@ const logOut = async (req, res) => {
 
     const user = await User.findOne({ refreshTokens: refreshToken });
     if (!user) {
-      res.clearCookie("refreshToken", { httpOnly: true, sameSite: "strict" });
+      res.clearCookie("refreshToken", {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "strict",
+      });
       return res.sendStatus(204);
     }
 
