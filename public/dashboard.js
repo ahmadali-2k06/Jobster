@@ -1,8 +1,4 @@
 import getAccessToken from "./helpers/getAccessToken.js";
-const hamBurger = document.querySelector(".ham-burger-svg-box ");
-const logoBox = document.querySelector(".logo-box");
-const grid = document.querySelector(".main-grid");
-const nav = document.querySelector(".main-nav-box");
 const profileButton = document.querySelector(".logout-button");
 const logOutButton = document.querySelector(".button-log-out");
 const chartButton = document.querySelector(".chart-name");
@@ -49,6 +45,14 @@ const locationFieldUser = document.querySelector("#locationUser");
 const saveProfileButton = document.querySelector(".save-profile-btn");
 const userNameNav = document.querySelector(".user-name");
 let addjobFields = document.querySelectorAll(".form-group input");
+const hamburgerBtn = document.querySelector(".ham-burger-svg-box");
+const closeBtn = document.querySelector(".close-sidebar-btn");
+const mainGrid = document.querySelector(".main-grid");
+function toggleSidebar() {
+  mainGrid.classList.toggle("collapsed");
+}
+hamburgerBtn.addEventListener("click", toggleSidebar);
+closeBtn.addEventListener("click", toggleSidebar);
 let errorSvg = `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10zm-1.5-5.009c0-.867.659-1.491 1.491-1.491.85 0 1.509.624 1.509 1.491 0 .867-.659 1.509-1.509 1.509-.832 0-1.491-.642-1.491-1.509zM11.172 6a.5.5 0 0 0-.499.522l.306 7a.5.5 0 0 0 .5.478h1.043a.5.5 0 0 0 .5-.478l.305-7a.5.5 0 0 0-.5-.522h-1.655z" fill="#e74c3c"></path></g></svg>`;
 let successSvg = `  <svg  viewBox="0 0 512 512"  version="1.1"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000" > <g id="SVGRepo_bgCarrier" stroke-width="0"></g> <g  id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" ></g> <g id="SVGRepo_iconCarrier">  <title>success-filled</title> <g  id="Page-1" stroke="none" stroke-width="1"  fill="none"  fill-rule="evenodd" >  <g id="add-copy-2" fill="#07bc0c" transform="translate(42.666667, 42.666667)"  >  <path d="M213.333333,3.55271368e-14 C95.51296,3.55271368e-14 3.55271368e-14,95.51296 3.55271368e-14,213.333333 C3.55271368e-14,331.153707 95.51296,426.666667 213.333333,426.666667 C331.153707,426.666667 426.666667,331.153707 426.666667,213.333333 C426.666667,95.51296 331.153707,3.55271368e-14 213.333333,3.55271368e-14 Z M293.669333,137.114453 L323.835947,167.281067 L192,299.66912 L112.916693,220.585813 L143.083307,190.4192 L192,239.335893 L293.669333,137.114453 Z" id="Shape" ></path></g></g>  </g>  </svg>`;
 const token = await getAccessToken();
@@ -72,11 +76,7 @@ async function getUser(id) {
 }
 await getUser(id);
 populateUserFields();
-hamBurger.addEventListener("click", () => {
-  grid.classList.toggle("collapsed");
-  logoBox.classList.toggle("hidden");
-  nav.classList.toggle("non-collapsed");
-});
+
 
 profileButton.addEventListener("click", () => {
   logOutButton.classList.toggle("active");
@@ -674,4 +674,3 @@ async function logout() {
   localStorage.removeItem("accessToken");
   window.location.href = "/login";
 }
-
